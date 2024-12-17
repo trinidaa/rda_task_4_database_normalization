@@ -7,7 +7,7 @@ CREATE TABLE Countries (
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE WhAddress (
+CREATE TABLE Warehouses (
     ID INT AUTO_INCREMENT,
     WarehouseName VARCHAR(50) NOT NULL,
     WarehouseAddress VARCHAR(50) NOT NULL,
@@ -19,13 +19,13 @@ CREATE TABLE ProductInventory (
     ProductName VARCHAR(50) NOT NULL,
     WarehouseAmount INT NOT NULL,
     WarehouseID INT,
-    FOREIGN KEY (WarehouseID) REFERENCES WhAddress(ID) ON DELETE NO ACTION,
+    FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID) ON DELETE CASCADE,
     CountryID INT,
-	FOREIGN KEY (CountryID) REFERENCES Countries(ID) ON DELETE NO ACTION,
+	FOREIGN KEY (CountryID) REFERENCES Countries(ID) ON DELETE CASCADE,
     PRIMARY KEY (ID)
 );
 
-INSERT INTO WhAddress (WarehouseName, WarehouseAddress)
+INSERT INTO Warehouses (WarehouseName, WarehouseAddress)
 VALUES ('Warehouse-1', 'City-1, Street-1'),
        ('Warehouse-2', 'City-2, Street-2');
 
@@ -36,5 +36,5 @@ VALUES ('Country1'),
 
 -- Вставка данных в ProductInventory
 INSERT INTO ProductInventory (ProductName, WarehouseAmount, WarehouseID, CountryID)
-VALUES ('AwersomeProduct', 2, 1, 1),
-       ('AwersomeProduct', 5, 2, 2);
+VALUES ('AwesomeProduct', 2, 1, 1),
+       ('AwesomeProduct', 5, 2, 2);
